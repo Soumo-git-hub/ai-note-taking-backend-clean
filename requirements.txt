@@ -26,3 +26,4 @@ sqlalchemy==2.0.23
 aiosqlite==0.19.0
 python-magic==0.4.27
 pyttsx3==2.90
+markdown==3.5.1
