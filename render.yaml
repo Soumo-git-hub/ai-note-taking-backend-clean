@@ -2,7 +2,9 @@ services:
   - type: web
     name: ai-note-taking-backend
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      mkdir -p uploads temp
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
@@ -14,4 +16,10 @@ services:
       - key: UPLOAD_DIR
         value: uploads
       - key: TEMP_DIR
-        value: temp 
+        value: temp
+      - key: HUGGINGFACE_API_KEY
+        sync: false
+      - key: PORT
+        value: 8000
+    healthCheckPath: /api/status
+    autoDeploy: true 
